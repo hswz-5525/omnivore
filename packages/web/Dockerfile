@@ -12,6 +12,15 @@ ENV NEXT_PUBLIC_BASE_URL=$BASE_URL
 ENV NEXT_PUBLIC_SERVER_BASE_URL=$SERVER_BASE_URL
 ENV NEXT_PUBLIC_HIGHLIGHTS_BASE_URL=$HIGHLIGHTS_BASE_URL
 
+# 更改 APT 源
+RUN { \
+    echo "deb http://mirrors.tuna.tsinghua.edu.cn/debian/ buster main non-free contrib"; \
+    echo "deb-src http://mirrors.tuna.tsinghua.edu.cn/debian/ buster main non-free contrib"; \
+    echo; \
+} > /etc/apt/sources.list && \
+    apt-get update
+
+
 RUN apk add g++ make python3
 
 WORKDIR /app
