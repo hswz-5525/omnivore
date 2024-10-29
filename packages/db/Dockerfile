@@ -1,5 +1,13 @@
 FROM node:18.16
 
+# 更改 APT 源
+RUN { \
+    echo "deb http://mirrors.tuna.tsinghua.edu.cn/debian/ buster main non-free contrib"; \
+    echo "deb-src http://mirrors.tuna.tsinghua.edu.cn/debian/ buster main non-free contrib"; \
+    echo; \
+} > /etc/apt/sources.list && \
+    apt-get update
+    
 WORKDIR /app
 
 COPY package.json .
