@@ -2,6 +2,14 @@ FROM node:18.16 as builder
 
 WORKDIR /app
 
+# 更改 APT 源
+RUN { \
+    echo "deb http://mirrors.tuna.tsinghua.edu.cn/debian/ buster main non-free contrib"; \
+    echo "deb-src http://mirrors.tuna.tsinghua.edu.cn/debian/ buster main non-free contrib"; \
+    echo; \
+} > /etc/apt/sources.list && \
+    apt-get update
+
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 RUN apt-get update && apt-get install -y g++ make python3
 
