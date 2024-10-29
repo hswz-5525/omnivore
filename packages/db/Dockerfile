@@ -20,6 +20,8 @@ RUN apt-get update && apt-get install -y \
   postgresql \
   uuid-runtime
 
+RUN yarn config set registry https://registry.npm.taobao.org
+
 RUN yarn install
 
 ADD /packages/db ./packages/db
