@@ -35,6 +35,8 @@ COPY /packages/readabilityjs/package.json ./packages/readabilityjs/package.json
 COPY /packages/content-handler/package.json ./packages/content-handler/package.json
 COPY /packages/puppeteer-parse/package.json ./packages/puppeteer-parse/package.json
 
+RUN yarn config set registry https://registry.npmmirror.com/
+
 RUN yarn install --pure-lockfile
 
 ADD /packages/content-fetch ./packages/content-fetch
